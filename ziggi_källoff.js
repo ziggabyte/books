@@ -1,4 +1,4 @@
-//"use strict";
+"use strict";
 
 function Book(title, topic, pages, isbn) {
     this.title = title;
@@ -6,19 +6,22 @@ function Book(title, topic, pages, isbn) {
     this.pages = pages;
     this.isbn = isbn;
     this.getBookInfo = function () {
-        console.log("Book: " + title + "\nTopic: " + topic +
-        "\nPages: " + pages + "\nISBN: " + isbn);
+        console.log(
+            "Book: " + this.title + "\n" +
+            "Topic: " + this.topic + "\n" +
+            "Pages: " + this.pages + "\n" +
+            "ISBN: " + this.isbn + "\n" +
+            "-----");
     };
 }
 
 let books = [];
 
-books[0] = new Book("Vår kokbok", "Matlagning", 892, 9789113074931);
-books[1] = new Book("Ringens brödraskap", "Fantasy", 511, 9789113084909);
-books[2] = new Book("Clean code", "Programmering", 464, 9780132350884);
+books.push(new Book("Vår kokbok", "Matlagning", 892, 9789113074931));
+books.push(new Book("Ringens brödraskap", "Fantasy", 511, 9789113084909));
+books.push(new Book("Clean code", "Programmering", 464, 9780132350884));
 
 let booksToAdd = prompt("Skriv in hur många böcker du vill lägga till: ");
-let lengthOfBooksBeforeLoop = books.length;
 
 if (booksToAdd > 0) {
     for (let i = 0; i < booksToAdd; i++) {
@@ -27,11 +30,10 @@ if (booksToAdd > 0) {
         let pages = prompt("Bok " + (i + 1) + ": Antal sidor");
         let isbn = prompt("Bok " + (i + 1) + ": ISBN");
 
-        books[i + lengthOfBooksBeforeLoop] = new Book(title, topic, pages, isbn);
+        books.push(new Book(title, topic, pages, isbn));
     }
 }
 
-books.forEach((book) => { // ger informationen OCH EN RAD UNDEFINED???? 
-    console.log(book.getBookInfo());
-    console.log("-----");
+books.forEach((book) => {
+    book.getBookInfo();
 });
